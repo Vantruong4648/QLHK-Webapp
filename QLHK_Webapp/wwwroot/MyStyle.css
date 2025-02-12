@@ -1,0 +1,37 @@
+﻿body {
+    position: relative;
+    background-image: url(images/main_bg.jpg);
+    background-repeat: no-repeat;
+/*    background-size: 100% 100vh;*/
+}
+.container-form {
+    width: 650px;
+    height: auto;
+    flex-shrink: 0;
+    border-radius: 40px;
+    background: rgba(255, 255, 255, 0.75);
+}
+
+.container-henkham-form {
+    width: 100vh;
+    height: auto;
+    flex-shrink: 0;
+    border-radius: 40px;
+    background: rgba(255, 255, 255, 0.75);
+}
+
+.border-background {
+    border-radius: 40px;
+    background: rgba(255, 255, 255, 0.75);
+}
+
+.dk-button {
+    border-radius: 10px;
+    background: #F93D59;
+    box-shadow: 0px 4px 19px 0px rgba(119, 147, 65, 0.30);
+    width: 236px;
+    height: 40px;
+    flex-shrink: 0;
+    border-color: transparent;
+    color:white;
+}

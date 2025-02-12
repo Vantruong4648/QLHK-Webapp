@@ -1,0 +1,83 @@
+﻿@model ThongTinHenKhamRequest
+
+<div class="container-form center-box">
+    <h3 class="text-center" style="padding-top: 20px; padding-left:20px;">Đăng ký thông tin hẹn khám</h3>
+    <form asp-controller="NguoiDung" asp-action="DangKyMoi" method="post">
+        @*HoTen*@
+        <div class="form-field flex">
+            <div class="w-50">
+                <label asp-for="HoTen" class="form-label pt">Họ và Tên <span class="text-red">(*)</span></label>
+            </div>
+            <div class="flex-2">
+                <input asp-for="HoTen" class="form-input" value="@ViewBag.NguoiDung?.HoTen" />
+                <span asp-validation-for="HoTen" class="text-red"></span>
+            </div>
+        </div>
+
+
+        @*SDT*@
+        <div class="form-field flex">
+            <div class="w-50">
+                <label asp-for="SoDienThoai" class="form-label pt">Số điện thoại <span class="text-red">(*)</span></label>
+            </div>
+            <div class="flex-2">
+                <input asp-for="SoDienThoai" class="form-input" />
+                <span asp-validation-for="SoDienThoai" class="text-red"></span>
+            </div>
+        </div>
+
+        @*Ngay Sinh*@
+        <div class="form-field flex">
+            <div class="w-50">
+                <label asp-for="NgaySinh" class="form-label pt">Ngày sinh</label>
+            </div>
+            <div class="flex-2">
+                <input type="date" asp-for="NgaySinh" class="form-input" />
+                <span asp-validation-for="NgaySinh" class="text-red"></span>
+            </div>
+        </div>
+
+        @*GioiTinh*@
+        <div class="form-field flex">
+            <div class="w-50">
+                <label asp-for="GioiTinh" class="form-label pt">Giới tính</label>
+            </div>
+            <div class="flex-2">
+                <select asp-for="GioiTinh" asp-items="ViewBag.GioiTinhOptions" class="form-input"></select>
+                <span asp-validation-for="GioiTinh" class="text-red"></span>
+            </div>
+        </div>
+
+        @*Submit*@
+        <div class="form-field flex">
+            <div class="w-25">
+            </div>
+            <div class="flex-1">
+                <button class="dk-button">Đăng ký</button>
+
+                <div asp-validation-summary="All" class="text-red"></div>
+
+                @if (ViewBag.Errors != null)
+                {
+                    <div class="text-red ml">
+                        <ul>
+                            @foreach (string error in ViewBag.Errors)
+                            {
+                                <li class="ml">@error</li>
+                            }
+                        </ul>
+                    </div>
+                }
+                @if (ViewBag.Message != null)
+                {
+                    <div class="text-green ml">
+                        <ul>
+                            @ViewBag.Message
+                        </ul>
+                    </div>
+                }
+            </div>
+        </div>
+
+    </form>
+</div>
