@@ -18,7 +18,7 @@
 <body>
     <div class="container">
         <div class="page-content">
-            <div class="container-form center-box">
+            <div class="container-form center-box" style="padding-bottom:15px;">
                 <h3 class="text-center" style="padding-top: 20px; padding-left:20px;">Đăng nhập - Đăng ký hẹn khám</h3>
                 <form asp-controller="NguoiDung" asp-action="DangNhap" method="post">
 
@@ -73,9 +73,15 @@
                             }
                         </div>
                     </div>
-
+                    <div style="margin-left:20px;"> Chưa có tài khoản? <a href="/DangKy">Đăng ký</a>
+                        Hoặc muốn hẹn khám ngay?
+                        <span style="margin-left:5px;"> <a href="/thongtinhenkham">Đăng ký khám ngay</a></span>
+                        </div>
+                    
                 </form>
+               
             </div>
+            
         </div>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" asp-fallback-test="window.jQuery" asp-fallback-src="~/jquery.min.js"></script>

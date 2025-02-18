@@ -30,6 +30,8 @@ namespace QLHK_Webapp.DTO
 
         public string? NguoiDung { get; set; }
 
+        public int? TrangThai { get; set; }
+
         public override bool Equals(object? obj)
         {
             if (obj == null) return false;
@@ -45,12 +47,32 @@ namespace QLHK_Webapp.DTO
                 this.LyDoKham == thongtinhenkham.LyDoKham &&
                 this.LoaiKhamID == thongtinhenkham.LoaiKhamID &&
                 this.PhongKhamID == thongtinhenkham.PhongKhamID &&
-                this.NguoiDungID == thongtinhenkham.NguoiDungID;
+                this.NguoiDungID == thongtinhenkham.NguoiDungID &&
+                this.TrangThai == thongtinhenkham.TrangThai;
         }
 
         public override int GetHashCode()
         {
             return base.GetHashCode();
+        }
+
+        public ThongTinHenKhamUpdateRequest ToThongTinHenKhamUpdateRequest()
+        {
+            return new ThongTinHenKhamUpdateRequest
+            {
+                ThongTinHenKhamID = ThongTinHenKhamID,
+                HoTen = HoTen,
+                SoDienThoai = SoDienThoai,
+                NgaySinh = NgaySinh,
+                GioiTinh = GioiTinh,
+                DiaChi = DiaChi,
+                NgayHenKham = NgayHenKham,
+                LyDoKham = LyDoKham,
+                LoaiKhamID = LoaiKhamID,
+                PhongKhamID = PhongKhamID,
+                NguoiDungID = NguoiDungID,
+                TrangThai = TrangThai
+            };
         }
     }
 
@@ -73,7 +95,8 @@ namespace QLHK_Webapp.DTO
                 PhongKhamID = thongtinhenkham.PhongKhamID,
                 PhongKham = thongtinhenkham.PhongKham?.TenPhongKham,
                 NguoiDungID = thongtinhenkham.NguoiDungID,
-                NguoiDung = thongtinhenkham.NguoiDung?.HoTen
+                NguoiDung = thongtinhenkham.NguoiDung?.HoTen,
+                TrangThai = thongtinhenkham.TrangThai
             };
         }
     }

@@ -35,3 +35,24 @@
     border-color: transparent;
     color:white;
 }
+.custom-table td {
+    padding: 20px 25px !important;
+}
+
+.arrow{
+    font-size:24px;
+}
+
+.with-30 {
+    width: 200px;
+    display: inline-block;
+}
+.bold {
+    font-weight: bold;
+}
+
+.button-pink-back {
+    background-color: #F93D59;
+    color: #ffffff;
+
+}

@@ -34,4 +34,9 @@ namespace QLHK_Webapp.Helpers
         SessionKeyID = 1
 
     }
+
+    public enum SortOrderOptions
+    {
+        ASC, DESC
+    }
 }

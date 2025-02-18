@@ -16,7 +16,8 @@ namespace QLHK_Webapp.Controllers
             _nguoiDungService = nguoiDungService;
         }
 
-        [Route("/dangnhap1")]
+        [Route("/")]
+        [Route("/dangnhap")]
         public IActionResult Index()
         {
             ViewBag.Title = "Đăng nhập";
@@ -43,22 +44,29 @@ namespace QLHK_Webapp.Controllers
             //    return RedirectToAction("DangKy");
             //}
             //cal service method
-            NguoiDungResponse dangkyResponse = await _nguoiDungService.DangKyMoi(dangKyRequest);
-            if (CommonHelper.IsGuid(dangkyResponse.NguoiDungID.ToString()))
+            NguoiDungResponse? dangkyResponse = await _nguoiDungService.DangKyMoi(dangKyRequest);
+            if (dangkyResponse == null)
             {
                 ViewBag.Message = "Đăng ký thất bại";
             }
             else
             {
                 ViewBag.Message = "Đăng ký thành công";
+                return View("DangKy");
             }
             return RedirectToAction("DangKy");
         }
 
         [Route("DangNhap")]
+        [HttpPost]
         public async Task<IActionResult> DangNhap(DangNhapRequest dangNhapRequest)
         {
-            NguoiDungResponse? nguoiDung = await _nguoiDungService.DangNhap(dangNhapRequest);
+            //kiem tra cung nguoi dung la admin
+            if (dangNhapRequest.SoDienThoai == "admin" && dangNhapRequest.MatKhau == "admin")
+            {
+                return RedirectToAction("DanhSachThongTinHenKham", "ThongTinHenKham");
+            }
+            NguoiDungResponse ? nguoiDung = await _nguoiDungService.DangNhap(dangNhapRequest);
             if (nguoiDung == null)
             {
                  ViewBag.ErrorMessage = "Lỗi tài khoản hoặc mật khẩu không đúng";

@@ -1,25 +1,16 @@
-﻿@model ThongTinHenKhamRequest
+﻿@model ThongTinHenKhamUpdateRequest
 
-<table class="table mb custom-table">
-    <tr>
-        <td><span class="text-red"> 1. Đăng ký khám</span></td>
-        <td class="arrow">></td>
-        <td>2. Xác nhận</td>
-        <td class="arrow">></td>
-        <td>3. Hoàn tất</td>
-    </tr>
-</table>
-<h3 class="text-center" style="margin-top:5px;margin-bottom:5px;">Xem <a href="/lichsuhenkham">lịch sử hẹn khám</a></h3>
 <div class="container-form center-box">
-    <h3 class="text-center" style="padding-top: 20px; padding-left:20px;">Đăng ký thông tin hẹn khám</h3>
-    <form asp-controller="ThongTinHenKham" asp-action="ThemThongTinHenKham" method="post">
+    <h3 class="text-center" style="padding-top: 20px; padding-left:20px;">Cập nhật thông tin hẹn khám</h3>
+    <form asp-controller="ThongTinHenKham" asp-action="CapNhatThongTinHenKham" method="post">
+        <input type="hidden" asp-for="ThongTinHenKhamID" />
         @*HoTen*@
         <div class="form-field flex">
             <div class="w-50">
                 <label asp-for="HoTen" class="form-label pt">Họ và Tên <span class="text-red">(*)</span></label>
             </div>
             <div class="flex-2">
-                <input asp-for="HoTen" class="form-input" value="@ViewBag.NguoiDung?.HoTen" />
+                <input asp-for="HoTen" class="form-input" />
                 <span asp-validation-for="HoTen" class="text-red"></span>
             </div>
         </div>
@@ -31,7 +22,7 @@
                 <label asp-for="SoDienThoai" class="form-label pt">Số điện thoại <span class="text-red">(*)</span></label>
             </div>
             <div class="flex-2">
-                <input asp-for="SoDienThoai" class="form-input" value="@ViewBag.NguoiDung?.SoDienThoai" />
+                <input asp-for="SoDienThoai" class="form-input" />
                 <span asp-validation-for="SoDienThoai" class="text-red"></span>
             </div>
         </div>
@@ -64,7 +55,7 @@
                 <label asp-for="DiaChi" class="form-label pt">Địa chỉ<span class="text-red">(*)</span></label>
             </div>
             <div class="flex-2">
-                <input asp-for="DiaChi" class="form-input" value="@ViewBag.NguoiDung?.DiaChi" />
+                <input asp-for="DiaChi" class="form-input" />
                 <span asp-validation-for="DiaChi" class="text-red"></span>
             </div>
         </div>
@@ -114,14 +105,14 @@
             </div>
         </div>
 
-        <input type="hidden" asp-for="NguoiDungID" class="form-input" value="@ViewBag.NguoiDung?.NguoiDungID" />
+        <input type="hidden" asp-for="NguoiDungID" class="form-input" />
 
         @*Submit*@
         <div class="form-field flex">
             <div class="w-25">
             </div>
             <div class="flex-1">
-                <button class="dk-button">Đăng ký</button>
+                <button class="dk-button">Cập nhật</button>
 
                 <div asp-validation-summary="All" class="text-red"></div>
 

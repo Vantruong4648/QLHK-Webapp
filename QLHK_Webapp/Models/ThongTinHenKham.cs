@@ -38,6 +38,8 @@ namespace QLHK_Webapp.Models
         public Guid? NguoiDungID { get; set; }
 
         [ForeignKey("NguoiDungID")]
-        public virtual NguoiDung NguoiDung { get; set; }
+        public virtual NguoiDung? NguoiDung { get; set; }
+
+        public int? TrangThai { get; set; } = 0; // 0: Chờ xác nhận, 1: Đã xác nhận, 2: Đã khám, 3: Đã hủy
     }
 }

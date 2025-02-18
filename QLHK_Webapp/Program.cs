@@ -8,6 +8,8 @@ builder.Services.AddControllersWithViews();
 
 builder.Services.AddScoped<INguoiDungService, NguoiDungService>();
 builder.Services.AddScoped<IThongTinHenKhamService, ThongTinHenKhamService>();
+builder.Services.AddScoped<ILoaiKhamService, LoaiKhamService>();
+builder.Services.AddScoped<IPhongKhamService, PhongKhamService>();
 
 builder.Services.AddDistributedMemoryCache();
 builder.Services.AddSession(options =>

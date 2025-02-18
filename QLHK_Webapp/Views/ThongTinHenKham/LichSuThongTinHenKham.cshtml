@@ -1,0 +1,76 @@
+﻿@model IEnumerable<ThongTinHenKhamResponse>
+<h1 style="color:red;">Lịch sử hẹn khám</h1>
+<h2 style="text-align:center">@ViewBag?.NguoiDung?.HoTen</h2>
+<form asp-controller="ThongTinHenKham" asp-action="LichSuThongTinHenKham" method="get" >
+    <table class="text-center" style="margin:0 auto;">
+        <tr>
+            <td>
+                <input type="search" id="Search" class="form-input" placeholder="Nhập số điện thoại" name="searchString" value="@ViewBag?.CurrentSearchString" />
+            </td>
+            <td>
+                <button class="button button-blue-back">Tìm</button>
+            </td>
+        </tr>
+    </table>
+</form>
+<div class="container-form center-box">
+
+   
+    <table style="padding:20px;margin-top:30px;">
+    @foreach(var thongtinhenkham in Model)
+    {
+        <tr>
+            <td class="with-30 bold">Họ và tên:</td>
+            <td> @thongtinhenkham?.HoTen</td>
+        </tr>
+        <tr>
+            <td class="with-30 bold">Số điện thoại:</td>
+            <td>@thongtinhenkham?.SoDienThoai</td>
+        </tr>
+        <tr>
+            <td class="with-30 bold">Ngày sinh:</td>
+            <td>@thongtinhenkham?.NgaySinh?.ToString("dd/MM/yyyy")</td>
+        </tr>
+        <tr>
+            <td class="with-30 bold">
+                Giới tính:
+            </td>
+            <td>
+                @thongtinhenkham?.GioiTinh
+            </td>
+        </tr>
+        <tr>
+            <td class="with-30 bold">Địa chỉ:</td>
+            <td>@thongtinhenkham?.DiaChi</td>
+        </tr>
+        <tr>
+            <td class="with-30 bold">Phòng khám:</td>
+            <td>
+                @thongtinhenkham?.PhongKham
+
+            </td>
+        </tr>
+        <tr>
+            <td class="with-30 bold">
+                Loại khám:
+            </td>
+            <td>
+                @thongtinhenkham?.LoaiKham
+            </td>
+        </tr>
+        <tr>
+            <td class="with-30 bold">Ngày hẹn khám:</td>
+            <td>@thongtinhenkham?.NgayHenKham?.ToString("dd/MM/yyyy")</td>
+        </tr>
+        <tr>
+            <td class="with-30 bold">Lý do khám:</td>
+            <td>@thongtinhenkham?.LyDoKham</td>
+        </tr>
+
+        <tr>
+            <td>--------------------</td>
+            <td>-----------------------------------------</td>
+        </tr>
+    }
+    </table>
+</div>

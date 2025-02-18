@@ -1,11 +1,13 @@
 ﻿using QLHK_Webapp.Models;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 
 namespace QLHK_Webapp.DTO
 {
-    public class ThongTinHenKhamRequest
+    public class ThongTinHenKhamUpdateRequest
     {
+        [Required(ErrorMessage = "Thông tin hẹn khám ID không thể trống")]
+        public Guid? ThongTinHenKhamID { get; set; }
+
         [Required(ErrorMessage = "Vui lòng nhập họ và tên")]
         public string? HoTen { get; set; }
 
@@ -36,6 +38,7 @@ namespace QLHK_Webapp.DTO
         {
             return new ThongTinHenKham
             {
+                ThongTinHenKhamID = ThongTinHenKhamID ?? Guid.Empty,
                 HoTen = HoTen,
                 SoDienThoai = SoDienThoai,
                 NgaySinh = NgaySinh,
@@ -49,6 +52,5 @@ namespace QLHK_Webapp.DTO
                 NguoiDungID = NguoiDungID,
             };
         }
-
     }
 }

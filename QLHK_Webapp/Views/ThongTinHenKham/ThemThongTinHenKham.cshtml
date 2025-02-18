@@ -1,0 +1,122 @@
+﻿@model ThongTinHenKhamRequest
+<table class="table mb custom-table">
+    <tr>
+        <td> 1. Đăng ký khám</td>
+        <td class="arrow">></td>
+        <td><span class="text-red"> 2. Xác nhận</span></td>
+        <td class="arrow">></td>
+        <td>3. Hoàn tất</td>
+    </tr>
+</table>
+
+<div class="container-form center-box">
+    <h3 class="text-center" style="padding-top: 20px; padding-left:20px;">Xem lại thông tin đăng ký</h3>
+    <table>
+        <tr>
+            <td class="with-30 bold">Họ và tên:</td>
+            <td> @Model?.HoTen</td>
+        </tr>
+        <tr>
+            <td class="with-30 bold">Số điện thoại:</td>
+            <td>@Model?.SoDienThoai</td>
+        </tr>
+        <tr>
+            <td class="with-30 bold">Ngày sinh:</td>
+            <td>@Model?.NgaySinh?.ToString("dd/MM/yyyy")</td>
+        </tr>
+        <tr>
+            <td class="with-30 bold">
+                Giới tính:
+             </td>
+             <td>
+                @Model?.GioiTinh
+             </td>
+        </tr>
+        <tr>
+            <td class="with-30 bold">Địa chỉ:</td>
+            <td>@Model?.DiaChi</td>
+        </tr>
+        <tr>
+            <td class="with-30 bold">Phòng khám:</td>
+            <td>
+                @if(ViewBag?.PhongKham.PhongKhamID == Guid.Empty){
+
+                }else{
+                    @ViewBag?.PhongKham.TenPhongKham
+                }
+                
+            </td>
+        </tr>
+        <tr>
+            <td class="with-30 bold">
+                Loại khám:
+            </td>
+            <td>
+                @if (@ViewBag?.LoaiKham.LoaiKhamID == Guid.Empty){
+
+                }else{
+                    @ViewBag?.LoaiKham.TenLoaiKham
+                }
+            </td>
+        </tr>
+        <tr>
+            <td class="with-30 bold">Ngày hẹn khám:</td>
+            <td>@Model?.NgayHenKham?.ToString("dd/MM/yyyy")</td>
+        </tr>
+        <tr>
+            <td class="with-30 bold">Lý do khám:</td>
+            <td>@Model?.LyDoKham</td>
+        </tr>
+    </table>
+    @* <div> *@
+    @*     <label><span class="with-30 bold">Họ và tên:</span> @Model?.HoTen</label> *@
+    @* </div> *@
+    @* <div> *@
+    @*     <label><span class="with-30 bold">Số điện thoại:</span> @Model?.SoDienThoai</label> *@
+    @* </div> *@
+    @* <div> *@
+    @*     <label><span class="with-30 bold">Ngày sinh:</span> @Model?.NgaySinh</label> *@
+    @* </div> *@
+    @* <div> *@
+    @*     <label><span class="with-30 bold">Giới tính:</span> @Model?.GioiTinh</label> *@
+    @* </div> *@
+    @* <div> *@
+    @*     <label><span class="with-30 bold">Địa chỉ:</span> @Model?.DiaChi</label> *@
+    @* </div> *@
+    @* <div> *@
+    @*     <label><span class="with-30 bold">Phòng khám:</span> @ViewBag?.PhongKham.TenPhongKham</label> *@
+    @* </div> *@
+    @* <div> *@
+    @*     <label><span class="with-30 bold">Loại khám:</span> @ViewBag?.LoaiKham.TenLoaiKham</label> *@
+    @* </div> *@
+    @* <div> *@
+    @*     <label><span class="with-30 bold">Ngày hẹn khám:</span> @Model?.NgayHenKham</label> *@
+    @* </div> *@
+    @* <div> *@
+    @*     <label><span class="with-30 bold">Lý do khám:</span> @Model?.LyDoKham</label> *@
+    @* </div> *@
+    <form asp-controller="ThongTinHenKham" asp-action="XacNhanThongTinHenKham" method="post">
+        @*HoTen*@
+        <input type="hidden" asp-for="HoTen" class="form-input" value="@Model?.HoTen" />
+        <input type="hidden" asp-for="SoDienThoai" class="form-input" value="@Model?.SoDienThoai" />
+        <input type="hidden" asp-for="NgaySinh" class="form-input" value="@Model?.NgaySinh" />
+        <input type="hidden" asp-for="GioiTinh" class="form-input" value="@Model?.GioiTinh" />
+        <input type="hidden" asp-for="DiaChi" class="form-input" value="@Model?.DiaChi" />
+        <input type="hidden" asp-for="PhongKhamID" class="form-input" value="@Model?.PhongKhamID" />
+        <input type="hidden" asp-for="LoaiKhamID" class="form-input" value="@Model?.LoaiKhamID" />
+        <input type="hidden" asp-for="NgayHenKham" class="form-input" value="@Model?.NgayHenKham" />
+        <input type="hidden" asp-for="LyDoKham" class="form-input" value="@Model?.LyDoKham" />
+        <input type="hidden" asp-for="TrangThai" class="form-input" value="0" />
+        <input type="hidden" asp-for="NguoiDungID" class="form-input" value="@Model?.NguoiDungID" />
+        @*Submit*@
+        <div class="form-field flex">
+            <div class="w-25">
+            </div>
+            <div class="flex-1">
+                <button class="dk-button">Xác nhận</button>
+                <div asp-validation-summary="All" class="text-red"></div>
+            </div>
+        </div>
+
+    </form>
+</div>

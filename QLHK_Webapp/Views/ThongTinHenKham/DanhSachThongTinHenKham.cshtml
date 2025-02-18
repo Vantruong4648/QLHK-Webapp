@@ -1,0 +1,197 @@
+﻿@model IEnumerable<ThongTinHenKhamResponse>
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    ViewBag.Title = "Danh sách thông tin hẹn khám";
+}
+<form asp-controller="ThongTinHenKham" asp-action="DanhSachThongTinHenKham" method="get">
+    <h1>Danh sách hẹn khám</h1>
+
+    <div class="box flex">
+        <div class="flex-1">
+            <select class="form-input" name="searchBy" id="searchBy">
+                @foreach (var field in ViewBag.SearchFields)
+                {
+                    if (field.Key == ViewBag.CurrentSearchBy)
+                    {
+                        <option value="@field.Key" selected="selected">@field.Value</option>
+                    }
+                    else
+                    {
+                        <option value="@field.Key">@field.Value</option>
+                    }
+
+                }
+                @* Eg: searchBy=PersonName&searchString=abc *@
+            </select>
+        </div>
+
+        @* <div class="flex-1"> *@
+        @*     <input type="search" id="Search" class="form-input" placeholder="Tìm kiếm" name="searchString" value="@ViewBag.CurrentSearchString" /> *@
+        @* </div> *@
+        <div class="flex-1" id="searchInputContainer">
+            @if (ViewBag.CurrentSearchBy == nameof(ThongTinHenKhamResponse.TrangThai))
+            {
+                <select class="form-input" name="searchString">
+                    <option value="">Chọn trạng thái</option>
+                    <option value="1" selected="@(ViewBag.CurrentSearchString == "1" ? "true" : "")">Đã xác nhận</option>
+                    <option value="2" selected="@(ViewBag.CurrentSearchString == "2" ? "true" : "")">Đã khám</option>
+                    <option value="3" selected="@(ViewBag.CurrentSearchString == "3" ? "true" : "")">Đã hủy</option>
+                    <option value="0" selected="@(ViewBag.CurrentSearchString == "0" ? "true" : "")">Chưa xác nhận</option>
+                </select>
+            }
+            else
+            {
+                <input type="search" id="Search" class="form-input" placeholder="Tìm kiếm" name="searchString" value="@ViewBag.CurrentSearchString" />
+            }
+            @* <input type="search" id="Search" class="form-input" placeholder="Tìm kiếm" name="searchString" value="@ViewBag.CurrentSearchString" /> *@
+        </div>
+
+        <div class="flex-1">
+            <button class="button button-blue-back">Tìm</button>
+            <a asp-controller="ThongTinHenKham" asp-action="DanhSachThongTinHenKham" class="link-hover">Làm trống</a>
+        </div>
+    </div>
+
+
+    <table class="table w-100 mt">
+        <thead>
+            <tr>
+                @await Html.PartialAsync("_GridColumnHeader", new ViewDataDictionary(ViewData) {
+                { "ColumnName", nameof(ThongTinHenKhamResponse.HoTen) },
+                { "DisplayName", "Họ và Tên" },
+                })
+
+                @await Html.PartialAsync("_GridColumnHeader", new ViewDataDictionary(ViewData) {
+                { "ColumnName", nameof(ThongTinHenKhamResponse.NgaySinh) },
+                { "DisplayName", "Ngày Sinh" },
+                })
+
+                @await Html.PartialAsync("_GridColumnHeader", new ViewDataDictionary(ViewData) {
+                { "ColumnName", nameof(ThongTinHenKhamResponse.DiaChi) },
+                { "DisplayName", "Địa chỉ" },
+                })
+
+                @await Html.PartialAsync("_GridColumnHeader", new ViewDataDictionary(ViewData) {
+                { "ColumnName", nameof(ThongTinHenKhamResponse.SoDienThoai) },
+                { "DisplayName", "Số điện thoại" },
+                })
+
+                @await Html.PartialAsync("_GridColumnHeader", new ViewDataDictionary(ViewData) {
+                { "ColumnName", nameof(ThongTinHenKhamResponse.NgayHenKham) },
+                { "DisplayName", "Ngày hẹn" },
+                })
+
+                
+
+                @await Html.PartialAsync("_GridColumnHeader", new ViewDataDictionary(ViewData) {
+                { "ColumnName", nameof(ThongTinHenKhamResponse.LoaiKham) },
+                { "DisplayName", "Loại khám" },
+                })
+
+                @await Html.PartialAsync("_GridColumnHeader", new ViewDataDictionary(ViewData) {
+                { "ColumnName", nameof(ThongTinHenKhamResponse.PhongKham) },
+                { "DisplayName", "Phòng khám" },
+                })
+
+                @await Html.PartialAsync("_GridColumnHeader", new ViewDataDictionary(ViewData) {
+                { "ColumnName", nameof(ThongTinHenKhamResponse.LyDoKham) },
+                { "DisplayName", "Lý do" },
+                })
+
+                @await Html.PartialAsync("_GridColumnHeader", new ViewDataDictionary(ViewData) {
+                { "ColumnName", nameof(ThongTinHenKhamResponse.TrangThai) },
+                { "DisplayName", "Trạng thái" },
+                })
+
+                <th>Thao tác</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (ThongTinHenKhamResponse thongtinkham in Model)
+            {
+                <tr>
+                    <td style="width:15%">@thongtinkham.HoTen</td>
+                    <td style="width:20%">@thongtinkham.NgaySinh?.ToString("dd/MM/yyyy")</td>
+                    <td style="width:13%">@thongtinkham.DiaChi</td>
+                    <td style="width:9%">@thongtinkham.SoDienThoai</td>
+                    <td style="width:9%">@thongtinkham.NgayHenKham?.ToString("dd/MM/yyyy")</td>
+                    <td style="width:10%">@thongtinkham.LoaiKham</td>
+                    <td style="width:10%">@thongtinkham.PhongKham</td>
+                    <td style="width:20%">@thongtinkham.LyDoKham</td>
+                    <td style="width:10%">
+                        @switch (thongtinkham.TrangThai){
+                            case 1:
+                                <span class="text-green">Đã xác nhận</span>
+                                break;
+                            case 2:
+                                <span class="text-yellow">Đã khám</span>
+                                break;
+                            case 3:
+                                <span class="text-red">Đã hủy</span>
+                                break;
+                            default:
+                                <span class="text-red">Chưa xác nhận</span>
+                                break;
+                          }
+                        
+                    </td>
+                    <td style="width:25%">
+                        <a asp-controller="ThongTinHenKham" asp-action="CapNhatThongTinHenKham" asp-route-ThongTinHenKhamID="@thongtinkham.ThongTinHenKhamID">Sửa&nbsp;</a>
+                        @* /Persons/Edit/1 *@
+                        &nbsp;
+                        @* <a asp-controller="Persons" asp-action="Xoa" asp-route-ThongTinHenKhamID="@thongtinkham.ThongTinHenKhamID">&nbsp;Xóa</a> *@
+                        @* &nbsp; *@
+                        <a asp-controller="ThongTinHenKham" asp-action="CapNhatTrangThai" asp-route-ThongTinHenKhamID="@thongtinkham.ThongTinHenKhamID">&nbsp;Xác nhận</a>
+
+                        @* /Persons/Delete/1 *@
+                    </td>
+                </tr>
+            }
+            <tr></tr>
+        </tbody>
+
+    </table>
+</form>
+
+        <script>
+            $(document).ready(function () {
+                $('#searchBy').change(function () {
+                    var selectedValue = $(this).val();
+                    if (selectedValue == 'TrangThai') {
+                        $('#searchInputContainer').html(`
+                            <select class="form-input" name="searchString" id="searchString">
+                                <option value="">Chọn trạng thái</option>
+                                <option value="1">Đã xác nhận</option>
+                                <option value="2">Đã khám</option>
+                                <option value="3">Đã hủy</option>
+                                <option value="0">Chưa xác nhận</option>
+                            </select>
+                        `);
+                    } else {
+                        $('#searchInputContainer').html(`
+                            <input type="search" id="Search" class="form-input" placeholder="Tìm kiếm" name="searchString" value="@ViewBag.CurrentSearchString" />
+                        `);
+                    }
+                });
+
+                var currentSearchBy = '@ViewBag.CurrentSearchBy';
+                var currentSearchString = '@ViewBag.CurrentSearchString';
+                
+                if (currentSearchBy == 'TrangThai') {
+                    $('#searchInputContainer').html(`
+                        <select class="form-input" name="searchString" id="searchString">
+                            <option value="">Chọn trạng thái</option>
+                            <option value="1" ${currentSearchString == "1" ? "selected" : ""}>Đã xác nhận</option>
+                            <option value="2" ${currentSearchString == "2" ? "selected" : ""}>Đã khám</option>
+                            <option value="3" ${currentSearchString == "3" ? "selected" : ""}>Đã hủy</option>
+                            <option value="0" ${currentSearchString == "0" ? "selected" : ""}>Chưa xác nhận</option>
+                        </select>
+                    `);
+                } else {
+                    $('#searchInputContainer').html(`
+                        <input type="search" id="Search" class="form-input" placeholder="Tìm kiếm" name="searchString" value="${currentSearchString}" />
+                    `);
+                }
+            });
+        </script>
