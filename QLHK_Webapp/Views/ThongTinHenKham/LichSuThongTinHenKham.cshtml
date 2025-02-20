@@ -15,62 +15,88 @@
 </form>
 <div class="container-form center-box">
 
-   
-    <table style="padding:20px;margin-top:30px;">
-    @foreach(var thongtinhenkham in Model)
-    {
-        <tr>
-            <td class="with-30 bold">Họ và tên:</td>
-            <td> @thongtinhenkham?.HoTen</td>
-        </tr>
-        <tr>
-            <td class="with-30 bold">Số điện thoại:</td>
-            <td>@thongtinhenkham?.SoDienThoai</td>
-        </tr>
-        <tr>
-            <td class="with-30 bold">Ngày sinh:</td>
-            <td>@thongtinhenkham?.NgaySinh?.ToString("dd/MM/yyyy")</td>
-        </tr>
-        <tr>
-            <td class="with-30 bold">
-                Giới tính:
-            </td>
-            <td>
-                @thongtinhenkham?.GioiTinh
-            </td>
-        </tr>
-        <tr>
-            <td class="with-30 bold">Địa chỉ:</td>
-            <td>@thongtinhenkham?.DiaChi</td>
-        </tr>
-        <tr>
-            <td class="with-30 bold">Phòng khám:</td>
-            <td>
-                @thongtinhenkham?.PhongKham
+    @if(Model != null){
+        <table style="padding:20px;margin-top:30px;">
+            @foreach (var thongtinhenkham in Model)
+            {
+                <tr>
+                    <td class="with-30 bold">Họ và tên:</td>
+                    <td> @thongtinhenkham?.HoTen</td>
+                </tr>
+                <tr>
+                    <td class="with-30 bold">Số điện thoại:</td>
+                    <td>@thongtinhenkham?.SoDienThoai</td>
+                </tr>
+                <tr>
+                    <td class="with-30 bold">Ngày sinh:</td>
+                    <td>@thongtinhenkham?.NgaySinh?.ToString("dd/MM/yyyy")</td>
+                </tr>
+                <tr>
+                    <td class="with-30 bold">
+                        Giới tính:
+                    </td>
+                    <td>
+                        @thongtinhenkham?.GioiTinh
+                    </td>
+                </tr>
+                <tr>
+                    <td class="with-30 bold">Địa chỉ:</td>
+                    <td>@thongtinhenkham?.DiaChi</td>
+                </tr>
+                <tr>
+                    <td class="with-30 bold">Phòng khám:</td>
+                    <td>
+                        @thongtinhenkham?.PhongKham
 
-            </td>
-        </tr>
-        <tr>
-            <td class="with-30 bold">
-                Loại khám:
-            </td>
-            <td>
-                @thongtinhenkham?.LoaiKham
-            </td>
-        </tr>
-        <tr>
-            <td class="with-30 bold">Ngày hẹn khám:</td>
-            <td>@thongtinhenkham?.NgayHenKham?.ToString("dd/MM/yyyy")</td>
-        </tr>
-        <tr>
-            <td class="with-30 bold">Lý do khám:</td>
-            <td>@thongtinhenkham?.LyDoKham</td>
-        </tr>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="with-30 bold">
+                        Loại khám:
+                    </td>
+                    <td>
+                        @thongtinhenkham?.LoaiKham
+                    </td>
+                </tr>
+                <tr>
+                    <td class="with-30 bold">Ngày hẹn khám:</td>
+                    <td>@thongtinhenkham?.NgayHenKham?.ToString("dd/MM/yyyy")</td>
+                </tr>
+                <tr>
+                    <td class="with-30 bold">Lý do khám:</td>
+                    <td>@thongtinhenkham?.LyDoKham</td>
+                </tr>
 
-        <tr>
-            <td>--------------------</td>
-            <td>-----------------------------------------</td>
-        </tr>
+                <tr>
+                    <td class="with-30 bold">Trạng thái:</td>
+                    <td>
+                        @switch (thongtinhenkham?.TrangThai)
+                        {
+                            case 0:
+                                <span style="color:red;">Chờ xác nhận</span>
+                                break;
+                            case 1:
+                                <span style="color:green;">Đã xác nhận</span>
+                                break;
+                            case 2:
+                                <span style="color:yellow;">Đã khám</span>
+                                break;
+                            case 3:
+                                <span style="color:red;">Đã hủy</span>
+                                break;
+                            default:
+                                <span style="color:red;">Đã hủy</span>
+                                break;
+                        }
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>--------------------</td>
+                    <td>-----------------------------------------</td>
+                </tr>
+            }
+        </table>
     }
-    </table>
+    
 </div>

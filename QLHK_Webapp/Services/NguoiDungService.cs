@@ -28,7 +28,7 @@ namespace QLHK_Webapp.Services
             nguoidung.NguoiDungID = Guid.NewGuid();
             _db.NguoiDungs.Add(nguoidung);
             await _db.SaveChangesAsync();
-            return nguoidung.ToDangKyResponse();
+            return nguoidung.ToNguoiDungShortResponse();
         }
 
         public async Task<NguoiDungResponse?> DangNhap(DangNhapRequest? dangNhapRequest)
@@ -41,7 +41,7 @@ namespace QLHK_Webapp.Services
             NguoiDung? nguoidung = await _db.NguoiDungs.FirstOrDefaultAsync(x => x.SoDienThoai == dangNhapRequest.SoDienThoai && x.MatKhau == dangNhapRequest.MatKhau);
             if (nguoidung != null)
             {
-                return nguoidung.ToDangKyResponse();
+                return nguoidung.ToNguoiDungShortResponse();
             }
             else
             {

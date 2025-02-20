@@ -26,9 +26,9 @@ namespace QLHK_Webapp.DTO
         }
     }
 
-    public static class DangKyExtension
+    public static class NguoiDungExtension
     {
-        public static NguoiDungResponse ToDangKyResponse(this NguoiDung nguoidung)
+        public static NguoiDungResponse ToNguoiDungShortResponse(this NguoiDung nguoidung)
         {
             return new NguoiDungResponse
             {
